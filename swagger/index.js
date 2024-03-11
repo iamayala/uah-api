@@ -3,7 +3,7 @@ const servers = require("./servers");
 const paths = require("./paths");
 
 module.exports = {
-  ...basicInfo,
-  ...servers,
-  ...paths,
+	...basicInfo,
+	...servers,
+	...paths,
 };
