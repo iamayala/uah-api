@@ -22,20 +22,26 @@ exports.validate = (method) => {
 					.notEmpty()
 					.isLength({ min: 8 })
 					.withMessage("Password must be of min 8 characters"),
-				body("username")
+				body("user_name")
 					.exists()
 					.withMessage("username is required")
 					.trim()
 					.escape()
 					.notEmpty(),
-				body("mobile")
+				body("phone_number")
 					.trim()
 					.escape()
 					.isNumeric()
-					.withMessage("Mobile number must contain numbers only"),
-				body("email")
+					.withMessage("mobile number must contain numbers only"),
+				body("email_address")
 					.exists()
 					.withMessage("username is required")
+					.trim()
+					.escape()
+					.notEmpty(),
+				body("location")
+					.exists()
+					.withMessage("location is required")
 					.trim()
 					.escape()
 					.notEmpty(),
@@ -61,9 +67,9 @@ exports.validate = (method) => {
 		}
 		case "verify": {
 			return [
-				body("code")
+				body("otp")
 					.exists()
-					.withMessage("Email is required")
+					.withMessage("OTP is required")
 					.trim()
 					.escape()
 					.notEmpty(),
