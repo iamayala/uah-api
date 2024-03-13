@@ -1,0 +1,52 @@
+{
+	"id": "12345",
+	"name": "Some text",
+	"description": "Some text",
+	"start": {
+		"timezone": "America/Los_Angeles",
+		"utc": "2018-05-12T02:00:00Z",
+		"local": "2018-05-11T19:00:00"
+	},
+	"end": {
+		"timezone": "America/Los_Angeles",
+		"utc": "2018-05-12T02:00:00Z",
+		"local": "2018-05-11T19:00:00"
+	},
+	"url": "https://www.eventbrite.com/e/45263283700",
+	"vanity_url": "https://testevent.eventbrite.com",
+	"is_active": "true",
+	"visibility": "true",
+	"online_event": false,
+	"organizer_id": "",
+	"event_profile_picture": "",
+	"venue_name": "",
+	"address": {
+		"address_1": null,
+		"address_2": null,
+		"city": null,
+		"region": null,
+		"postal_code": null,
+		"country": null,
+		"latitude": null,
+		"longitude": null
+	},
+	"format_name": "Seminar or Talk",
+	"bookmarked": false,
+	"listed": false,
+	"shareable": false,
+	"invite_only": false,
+	"show_remaining": true,
+	"password": "12345",
+	"capacity": 100,
+	"hide_start_date": true,
+	"hide_end_date": true,
+	"locale": "en-US",
+	"is_locked": true,
+	"privacy_setting": "unlocked",
+	"is_externally_ticketed": false,
+	"is_series": true,
+	"is_series_parent": true,
+	"series_id": "56321",
+	"is_free": true,
+	"resource_uri": "https://www.eventbriteapi.com/v3/events/1234/"
+}

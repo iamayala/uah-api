@@ -2,70 +2,65 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		await queryInterface.createTable("Users", {
+		await queryInterface.createTable("Feeds", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			name: {
+			content: {
+				type: Sequelize.STRING,
+				allowNull: false,
+			},
+			likes: {
+				type: Sequelize.INTEGER,
+				allowNull: false,
+				defaultValue: 0,
+			},
+			retweets: {
+				type: Sequelize.INTEGER,
+				allowNull: false,
+				defaultValue: 0,
+			},
+			hashtags: {
 				type: Sequelize.STRING,
 			},
-			user_name: {
+			mentions: {
 				type: Sequelize.STRING,
+			},
+			media: {
+				type: Sequelize.TEXT,
 			},
 			location: {
 				type: Sequelize.STRING,
 			},
-			profile_location: {
+			source: {
 				type: Sequelize.STRING,
-				defaultValue: "",
 			},
-			description: {
+			replyTo: {
 				type: Sequelize.STRING,
-				defaultValue: "",
 			},
-			url: {
+			parentFeedId: {
 				type: Sequelize.STRING,
-				defaultValue: "http://localhost",
 			},
-			protected: {
+			visibility: {
 				type: Sequelize.BOOLEAN,
-				defaultValue: false,
-			},
-			followers_count: {
-				type: Sequelize.INTEGER,
-				defaultValue: 0,
-			},
-			verified: {
-				type: Sequelize.BOOLEAN,
-				defaultValue: false,
 			},
 			language: {
 				type: Sequelize.STRING,
 				defaultValue: "en-US",
 			},
-			email_address: {
+			sentiment: {
 				type: Sequelize.STRING,
 			},
-			phone_number: {
-				type: Sequelize.STRING,
-			},
-			role_id: {
-				type: Sequelize.STRING,
-				defaultValue: "user",
-			},
-			password: {
-				type: Sequelize.STRING,
-			},
-			profile_image_url: {
-				type: Sequelize.STRING,
-				defaultValue: "",
-			},
-			is_active: {
+			verified: {
 				type: Sequelize.BOOLEAN,
 				defaultValue: false,
+			},
+			userId: {
+				type: Sequelize.INTEGER,
+				allowNull: false,
 			},
 			createdAt: {
 				allowNull: false,
@@ -78,6 +73,6 @@ module.exports = {
 		});
 	},
 	async down(queryInterface, Sequelize) {
-		await queryInterface.dropTable("Users");
+		await queryInterface.dropTable("Feeds");
 	},
 };

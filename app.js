@@ -7,10 +7,12 @@ const app = express();
 const cors = require("cors");
 
 const auth = require("./route/v1/auth.route");
+const feed = require("./route/v1/feed.route");
 
 const corsOptions = {
 	origin: "*",
 	credentials: true,
+	methods: ["GET", "POST", "PUT", "DELETE"],
 	optionSuccessStatus: 200,
 };
 
@@ -29,15 +31,15 @@ const optionsV1 = {
 			description: "UAH API",
 			version: "1.0.0",
 		},
-		components: {
-			securitySchemes: {
-				JWT: {
-					type: "apiKey",
-					name: "x-access-token",
-					in: "header",
-				},
-			},
-		},
+		// components: {
+		// 	securitySchemes: {
+		// 		JWT: {
+		// 			type: "apiKey",
+		// 			name: "x-access-token",
+		// 			in: "header",
+		// 		},
+		// 	},
+		// },
 		servers: [
 			{
 				url: "http://localhost:8000",
@@ -54,6 +56,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 // Use the aggregated router in your application
 app.use("/auth", auth);
+app.use("/feed", feed);
 
 app.listen(process.env.PORT, () => {
 	console.log(`:::::::::::::::: SERVER RUNNING ON ${process.env.PORT}.`);

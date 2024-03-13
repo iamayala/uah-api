@@ -80,5 +80,42 @@ exports.validate = (method) => {
 					.notEmpty(),
 			];
 		}
+		case "create-feed": {
+			return [
+				body("content")
+					.exists()
+					.withMessage("Content is required")
+					.trim()
+					.notEmpty(),
+				body("userId")
+					.exists()
+					.withMessage("User ID is required")
+					.trim()
+					.notEmpty(),
+			];
+		}
+		case "update-feed": {
+			return [
+				body("content")
+					.exists()
+					.withMessage("Content is required")
+					.trim()
+					.notEmpty(),
+				param("id")
+					.exists()
+					.withMessage("Feed ID is required")
+					.trim()
+					.notEmpty(),
+			];
+		}
+		case "delete-feed": {
+			return [
+				param("id")
+					.exists()
+					.withMessage("Feed ID is required")
+					.trim()
+					.notEmpty(),
+			];
+		}
 	}
 };
