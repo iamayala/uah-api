@@ -117,5 +117,108 @@ exports.validate = (method) => {
 					.notEmpty(),
 			];
 		}
+		case "create-event": {
+			return [
+				body("name").exists().withMessage("Name is required").trim().notEmpty(),
+				body("description")
+					.exists()
+					.withMessage("Description is required")
+					.trim()
+					.notEmpty(),
+				body("start").exists().withMessage("Start date is required"),
+				body("end").exists().withMessage("End date is required"),
+				body("is_active")
+					.exists()
+					.withMessage("Active status is required")
+					.isBoolean()
+					.withMessage("Active status must be a boolean"),
+				body("visibility")
+					.exists()
+					.withMessage("Visibility status is required")
+					.isBoolean()
+					.withMessage("Visibility status must be a boolean"),
+				body("online_event")
+					.exists()
+					.withMessage("Online event status is required")
+					.isBoolean()
+					.withMessage("Online event status must be a boolean"),
+				body("organizer_id")
+					.exists()
+					.withMessage("Organizer ID is required")
+					.trim()
+					.notEmpty(),
+				body("venue_name")
+					.exists()
+					.withMessage("Venue name is required")
+					.trim()
+					.notEmpty(),
+				body("address")
+					.exists()
+					.withMessage("Address is required")
+					.isObject()
+					.withMessage("Address must be an object"),
+				body("format_name")
+					.exists()
+					.withMessage("Format name is required")
+					.trim()
+					.notEmpty(),
+				body("capacity")
+					.exists()
+					.withMessage("Capacity is required")
+					.isInt({ min: 5 })
+					.withMessage("Capacity must be a positive integer"),
+			];
+		}
+		case "update-event": {
+			return [
+				body("description")
+					.exists()
+					.withMessage("Description is required")
+					.trim()
+					.notEmpty(),
+				body("start").exists().withMessage("Start date is required"),
+				body("end").exists().withMessage("End date is required"),
+				body("is_active")
+					.exists()
+					.withMessage("Active status is required")
+					.isBoolean()
+					.withMessage("Active status must be a boolean"),
+				body("visibility")
+					.exists()
+					.withMessage("Visibility status is required")
+					.isBoolean()
+					.withMessage("Visibility status must be a boolean"),
+				body("online_event")
+					.exists()
+					.withMessage("Online event status is required")
+					.isBoolean()
+					.withMessage("Online event status must be a boolean"),
+				body("venue_name")
+					.exists()
+					.withMessage("Venue name is required")
+					.trim()
+					.notEmpty(),
+				body("address").exists().withMessage("Address is required"),
+				body("capacity")
+					.exists()
+					.withMessage("Capacity is required")
+					.isInt({ min: 5 })
+					.withMessage("Capacity must be a positive integer"),
+			];
+		}
+		case "create-resource": {
+			return [
+				body("content")
+					.exists()
+					.withMessage("Content is required")
+					.trim()
+					.notEmpty(),
+				body("userId")
+					.exists()
+					.withMessage("User ID is required")
+					.trim()
+					.notEmpty(),
+			];
+		}
 	}
 };

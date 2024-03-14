@@ -1,0 +1,15 @@
+{
+	"name": "example_document.docx",
+	"format": "docx",
+	"type": "document",
+	"size": "2048 KB",
+	"owner_id": "user@example.com",
+	"category": "Articles",
+	"can_share": true,
+	"visibility": true,
+	"parent_folder_id": "987654321",
+	"sharing_link": "https://drive.google.com/file/d/123456789/view",
+	"content_link": "https://drive.google.com/file/d/123456789/view",
+	"thumbnail": "https://drive.google.com/thumbnail/123456789",
+	"description": "Binary content or reference to storage location"
+}

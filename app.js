@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const auth = require("./route/v1/auth.route");
 const feed = require("./route/v1/feed.route");
+const event = require("./route/v1/event.route");
 
 const corsOptions = {
 	origin: "*",
@@ -57,7 +58,8 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 // Use the aggregated router in your application
 app.use("/auth", auth);
 app.use("/feed", feed);
+app.use("/event", event);
 
 app.listen(process.env.PORT, () => {
-	console.log(`:::::::::::::::: SERVER RUNNING ON ${process.env.PORT}.`);
+	console.log(`:::::::::: SERVER RUNNING ON ${process.env.PORT} ::::::::::`);
 });

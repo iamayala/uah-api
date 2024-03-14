@@ -31,22 +31,7 @@
 		"longitude": null
 	},
 	"format_name": "Seminar or Talk",
-	"bookmarked": false,
-	"listed": false,
-	"shareable": false,
-	"invite_only": false,
-	"show_remaining": true,
 	"password": "12345",
 	"capacity": 100,
-	"hide_start_date": true,
-	"hide_end_date": true,
-	"locale": "en-US",
-	"is_locked": true,
-	"privacy_setting": "unlocked",
-	"is_externally_ticketed": false,
-	"is_series": true,
-	"is_series_parent": true,
-	"series_id": "56321",
-	"is_free": true,
-	"resource_uri": "https://www.eventbriteapi.com/v3/events/1234/"
+	"locale": "en-US"
 }
