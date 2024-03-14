@@ -108,15 +108,6 @@ exports.validate = (method) => {
 					.notEmpty(),
 			];
 		}
-		case "delete-feed": {
-			return [
-				param("id")
-					.exists()
-					.withMessage("Feed ID is required")
-					.trim()
-					.notEmpty(),
-			];
-		}
 		case "create-event": {
 			return [
 				body("name").exists().withMessage("Name is required").trim().notEmpty(),
@@ -171,6 +162,11 @@ exports.validate = (method) => {
 		}
 		case "update-event": {
 			return [
+				param("id")
+					.exists()
+					.withMessage("Feed ID is required")
+					.trim()
+					.notEmpty(),
 				body("description")
 					.exists()
 					.withMessage("Description is required")
@@ -208,16 +204,45 @@ exports.validate = (method) => {
 		}
 		case "create-resource": {
 			return [
-				body("content")
+				body("name")
 					.exists()
-					.withMessage("Content is required")
+					.withMessage("Resource name is required")
 					.trim()
 					.notEmpty(),
-				body("userId")
+				body("owner_id")
 					.exists()
 					.withMessage("User ID is required")
 					.trim()
 					.notEmpty(),
+				body("content_link")
+					.exists()
+					.withMessage("Content link is required")
+					.trim()
+					.notEmpty(),
+			];
+		}
+		case "update-resource": {
+			return [
+				param("id")
+					.exists()
+					.withMessage("Resource ID is required")
+					.trim()
+					.notEmpty(),
+				body("name")
+					.exists()
+					.withMessage("Resource name is required")
+					.trim()
+					.notEmpty(),
+				body("content_link")
+					.exists()
+					.withMessage("Content link is required")
+					.trim()
+					.notEmpty(),
+			];
+		}
+		case "delete": {
+			return [
+				param("id").exists().withMessage("ID is required").trim().notEmpty(),
 			];
 		}
 	}

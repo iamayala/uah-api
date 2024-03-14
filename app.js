@@ -9,6 +9,7 @@ const cors = require("cors");
 const auth = require("./route/v1/auth.route");
 const feed = require("./route/v1/feed.route");
 const event = require("./route/v1/event.route");
+const resource = require("./route/v1/resource.route");
 
 const corsOptions = {
 	origin: "*",
@@ -59,6 +60,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/auth", auth);
 app.use("/feed", feed);
 app.use("/event", event);
+app.use("/resource", resource);
 
 app.listen(process.env.PORT, () => {
 	console.log(`:::::::::: SERVER RUNNING ON ${process.env.PORT} ::::::::::`);

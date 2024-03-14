@@ -9,7 +9,7 @@ router.post("/", [validation.validate("create-event")], event.create);
 router.get("/", event.findAll);
 router.get("/:id", event.findOne);
 router.patch("/:id", [validation.validate("update-event")], event.update);
-// router.delete("/:id", [validation.validate("delete-event")], event.update);
+router.delete("/:id", [validation.validate("delete")], event.delete);
 
 module.exports = router;
 
@@ -305,4 +305,23 @@ module.exports = router;
  *         description: Event not found.
  *       '500':
  *         description: Internal server error.
+ */
+
+/**
+ * @swagger
+ * /event/{id}:
+ *   delete:
+ *     summary: Delete a single event
+ *     description: Delete a single event
+ *     tags: [Event]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the event.
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       '200':
+ *         description: Successfully deleted a event
  */

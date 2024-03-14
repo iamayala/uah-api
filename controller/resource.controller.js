@@ -2,7 +2,7 @@ const { validationResult } = require("express-validator");
 const { QueryTypes } = require("sequelize");
 const { sequelize } = require("../models");
 const db = require("../models");
-const Event = db.Event;
+const Resource = db.Resource;
 
 module.exports = {
 	async create(req, res) {
@@ -16,29 +16,25 @@ module.exports = {
 			});
 		}
 
-		Event.create({
+		Resource.create({
 			name: req.body.name,
-			description: req.body.description,
-			start: req.body.start,
-			end: req.body.end,
-			url: req.body.url,
-			vanity_url: req.body.vanity_url,
-			is_active: req.body.is_active,
+			format: req.body.format,
+			type: req.body.type,
+			size: req.body.size,
+			owner_id: req.body.owner_id,
+			category: req.body.category,
+			can_share: req.body.can_share,
 			visibility: req.body.visibility,
-			online_event: req.body.online_event,
-			organizer_id: req.body.organizer_id,
-			event_profile_picture: req.body.event_profile_picture,
-			venue_name: req.body.venue_name,
-			address: JSON.stringify(req.body.address),
-			format_name: req.body.format_name,
-			password: req.body.password,
-			capacity: req.body.capacity,
-			locale: req.body.locale,
+			parent_folder_id: req.body.parent_folder_id,
+			sharing_link: req.body.sharing_link,
+			content_link: req.body.content_link,
+			thumbnail: req.body.thumbnail,
+			description: req.body.description,
 		})
-			.then((feed) => {
+			.then((resource) => {
 				res
 					.status(200)
-					.send({ id: feed.id, message: "Event added successfully" });
+					.send({ id: resource.id, message: "Resource added successfully" });
 			})
 			.catch((err) =>
 				res.status(500).send({
@@ -61,28 +57,28 @@ module.exports = {
 
 		const query = `
                 SELECT
-                    ev.*,
-                    JSON_OBJECT('id', u.id, 'name', u.name, 'user_name', u.user_name, 'profile_image_url', u.profile_image_url) AS organizer
+                    re.*,
+                    JSON_OBJECT('id', u.id, 'name', u.name, 'user_name', u.user_name, 'profile_image_url', u.profile_image_url) AS user
                 FROM
-                    Events AS ev
+                    Resources AS re
                 INNER JOIN
-                    Users AS u ON ev.organizer_id = u.id
+                    Users AS u ON re.owner_id = u.id
                 WHERE
-                    ev.visibility = 1;
+                    re.visibility = 1;
                 `;
 		await sequelize
 			.query(query, {
 				type: QueryTypes.SELECT,
 			})
-			.then((event) => {
-				if (!event) {
+			.then((resource) => {
+				if (!resource) {
 					res.status(404).send({
 						status: false,
 						type: "empty",
-						message: "No events found",
+						message: "No resources found",
 					});
 				} else {
-					res.status(200).send(event);
+					res.status(200).send(resource);
 				}
 			})
 			.catch((err) => {
@@ -102,31 +98,31 @@ module.exports = {
 
 		const query = `
                 SELECT
-                    ev.*,
-                    JSON_OBJECT('id', u.id, 'name', u.name, 'user_name', u.user_name, 'profile_image_url', u.profile_image_url) AS organizer
+                    re.*,
+                    JSON_OBJECT('id', u.id, 'name', u.name, 'user_name', u.user_name, 'profile_image_url', u.profile_image_url) AS user
                 FROM
-                    Events AS ev
+                    Resources AS re
                 INNER JOIN
-                    Users AS u ON ev.organizer_id = u.id
+                    Users AS u ON re.owner_id = u.id
                 WHERE
-                    ev.visibility = 1
-                AND 
-                    ev.id = ?
+                    re.visibility = 1
+                AND
+                    re.id = ?
                 `;
 		await sequelize
 			.query(query, {
 				replacements: [req.params.id],
 				type: QueryTypes.SELECT,
 			})
-			.then((event) => {
-				if (!event) {
+			.then((resource) => {
+				if (!resource) {
 					res.status(404).send({
 						status: false,
 						type: "empty",
-						message: "No events found",
+						message: "No resources found",
 					});
 				} else {
-					res.status(200).send(event.length > 0 ? event[0] : {});
+					res.status(200).send(resource.length > 0 ? resource[0] : {});
 				}
 			})
 			.catch((err) => {
@@ -144,21 +140,20 @@ module.exports = {
 			});
 		}
 
-		Event.update(
+		Resource.update(
 			{
-				description: req.body.description,
-				start: req.body.start,
-				end: req.body.end,
-				url: req.body.url,
-				vanity_url: req.body.vanity_url,
-				is_active: req.body.is_active,
+				name: req.body.name,
+				format: req.body.format,
+				type: req.body.type,
+				size: req.body.size,
+				category: req.body.category,
+				can_share: req.body.can_share,
 				visibility: req.body.visibility,
-				online_event: req.body.online_event,
-				organizer_id: req.body.organizer_id,
-				venue_name: req.body.venue_name,
-				address: JSON.stringify(req.body.address),
-				password: req.body.password,
-				capacity: req.body.capacity,
+				parent_folder_id: req.body.parent_folder_id,
+				sharing_link: req.body.sharing_link,
+				content_link: req.body.content_link,
+				thumbnail: req.body.thumbnail,
+				description: req.body.description,
 			},
 			{ returning: true, where: { id: req.params.id } }
 		)
@@ -167,12 +162,12 @@ module.exports = {
 					res.status(404).send({
 						status: false,
 						type: "empty",
-						message: "No events found",
+						message: "No resources found",
 					});
 				} else {
 					res
 						.status(200)
-						.send({ id: feed.id, message: "Event updated successfully" });
+						.send({ id: feed.id, message: "Resource updated successfully" });
 				}
 			})
 			.catch((err) =>
@@ -194,11 +189,12 @@ module.exports = {
 			});
 		}
 
-		Event.destroy({ where: { id: req.params.id } })
-			.then((feed) => {
-				res
-					.status(200)
-					.send({ id: feed.id, message: "Event deleted successfully" });
+		Resource.destroy({ where: { id: req.params.id } })
+			.then((resource) => {
+				res.status(200).send({
+					id: resource.id,
+					message: "Resource deleted successfully",
+				});
 			})
 			.catch((err) =>
 				res.status(500).send({

@@ -9,7 +9,7 @@ router.post("/", [validation.validate("create-feed")], feed.create);
 router.get("/", feed.findAll);
 router.get("/:id", feed.findOne);
 router.patch("/:id", [validation.validate("update-feed")], feed.update);
-router.delete("/:id", [validation.validate("delete-feed")], feed.update);
+router.delete("/:id", [validation.validate("delete")], feed.update);
 
 module.exports = router;
 

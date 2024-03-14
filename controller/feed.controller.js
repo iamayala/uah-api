@@ -200,18 +200,9 @@ module.exports = {
 
 		Feed.destroy({ where: { id: req.params.id } })
 			.then((feed) => {
-				console.log(feed);
-				if (!feed) {
-					res.status(404).send({
-						status: false,
-						type: "empty",
-						message: "No feeds found",
-					});
-				} else {
-					res
-						.status(200)
-						.send({ id: feed.id, message: "Feed deleted successfully" });
-				}
+				res
+					.status(200)
+					.send({ id: feed.id, message: "Feed deleted successfully" });
 			})
 			.catch((err) =>
 				res.status(500).send({
