@@ -3,6 +3,7 @@ const feed = require("./feed.controller.js");
 const event = require("./event.controller.js");
 const resource = require("./resource.controller.js");
 const campaign = require("./campaign.controller.js");
+const user = require("./user.controller.js");
 
 module.exports = {
 	auth,
@@ -10,4 +11,5 @@ module.exports = {
 	event,
 	resource,
 	campaign,
+	user,
 };

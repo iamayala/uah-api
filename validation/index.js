@@ -1,4 +1,4 @@
-const { body, param, query } = require("express-validator");
+const { body, param } = require("express-validator");
 
 exports.validate = (method) => {
 	switch (method) {
@@ -374,6 +374,73 @@ exports.validate = (method) => {
 					.optional()
 					.isArray()
 					.withMessage("Evaluation criteria must be an array"),
+			];
+		}
+		case "update-user": {
+			return [
+				body("name").optional().isString().withMessage("Name must be a string"),
+
+				body("user_name")
+					.optional()
+					.isString()
+					.withMessage("User name must be a string"),
+
+				body("location")
+					.optional()
+					.isString()
+					.withMessage("Location must be a string"),
+
+				body("description")
+					.optional()
+					.isString()
+					.withMessage("Description must be a string"),
+
+				body("email_address")
+					.optional()
+					.isEmail()
+					.withMessage("Invalid email address"),
+
+				body("phone_number")
+					.optional()
+					.isString()
+					.withMessage("Phone number must be a string"),
+
+				body("profile_location")
+					.optional()
+					.isString()
+					.withMessage("Profile location must be a string"),
+
+				body("url").optional().isURL().withMessage("Invalid URL"),
+
+				body("protected")
+					.optional()
+					.isBoolean()
+					.withMessage("Protected must be a boolean"),
+
+				body("followers_count")
+					.optional()
+					.isInt({ min: 0 })
+					.withMessage("Followers count must be a non-negative integer"),
+
+				body("verified")
+					.optional()
+					.isBoolean()
+					.withMessage("Verified must be a boolean"),
+
+				body("language")
+					.optional()
+					.isString()
+					.withMessage("Language must be a string"),
+
+				body("profile_image_url")
+					.optional()
+					.isURL()
+					.withMessage("Invalid profile image URL"),
+
+				body("is_active")
+					.optional()
+					.isBoolean()
+					.withMessage("Is active must be a boolean"),
 			];
 		}
 	}
