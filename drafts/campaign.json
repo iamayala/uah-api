@@ -1,0 +1,32 @@
+{
+	"campaign_name": "Climate Action Now",
+	"description": "An advocacy campaign to raise awareness about climate change and promote sustainable solutions.",
+	"start_date": "2024-01-01",
+	"end_date": "2024-12-31",
+	"organizer_id": "123456",
+	"goals": [
+		"Increase public awareness about the impacts of climate change",
+		"Advocate for policies that reduce greenhouse gas emissions",
+		"Promote renewable energy sources and sustainable practices"
+	],
+	"target_audience": "General public, policymakers, businesses",
+	"messages": [
+		"Every action counts in the fight against climate change!",
+		"Join us in creating a greener, more sustainable future."
+	],
+	"activities": [
+		"Organize climate rallies and marches",
+		"Host educational workshops and webinars",
+		"Engage with policymakers and advocate for legislative action"
+	],
+	"budget": "$50,000",
+	"staff": 5,
+	"volunteers": 20,
+	"target": 500,
+	"current_value": 350,
+	"evaluation_criteria": [
+		"Effectiveness of outreach efforts",
+		"Impact on public perception and awareness",
+		"Policy changes resulting from advocacy efforts"
+	]
+}

@@ -10,6 +10,7 @@ const auth = require("./route/v1/auth.route");
 const feed = require("./route/v1/feed.route");
 const event = require("./route/v1/event.route");
 const resource = require("./route/v1/resource.route");
+const campaign = require("./route/v1/campaign.route");
 
 const corsOptions = {
 	origin: "*",
@@ -61,6 +62,7 @@ app.use("/auth", auth);
 app.use("/feed", feed);
 app.use("/event", event);
 app.use("/resource", resource);
+app.use("/campaign", campaign);
 
 app.listen(process.env.PORT, () => {
 	console.log(`:::::::::: SERVER RUNNING ON ${process.env.PORT} ::::::::::`);

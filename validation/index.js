@@ -245,5 +245,136 @@ exports.validate = (method) => {
 				param("id").exists().withMessage("ID is required").trim().notEmpty(),
 			];
 		}
+		case "create-campaign": {
+			return [
+				body("campaign_name")
+					.notEmpty()
+					.withMessage("Campaign name is required")
+					.isString()
+					.withMessage("Campaign name must be a string"),
+				body("description")
+					.notEmpty()
+					.withMessage("Description is required")
+					.isString()
+					.withMessage("Description must be a string"),
+				body("start_date")
+					.notEmpty()
+					.withMessage("Start date is required")
+					.isDate()
+					.withMessage("Start date must be a valid date"),
+				body("end_date")
+					.notEmpty()
+					.withMessage("End date is required")
+					.isDate()
+					.withMessage("End date must be a valid date"),
+				body("organizer_id")
+					.notEmpty()
+					.withMessage("Organizer ID is required")
+					.isString()
+					.withMessage("Organizer ID must be a string"),
+				body("goals").isArray().withMessage("Goals must be an array"),
+				body("target_audience")
+					.notEmpty()
+					.withMessage("Target audience is required")
+					.isString()
+					.withMessage("Target audience must be a string"),
+				body("messages").isArray().withMessage("Messages must be an array"),
+				body("activities").isArray().withMessage("Activities must be an array"),
+				body("budget_currency")
+					.notEmpty()
+					.withMessage("Budget currency is required")
+					.isString()
+					.withMessage("Budget currency must be a string"),
+				body("budget")
+					.notEmpty()
+					.withMessage("Budget is required")
+					.isNumeric()
+					.withMessage("Budget must be a number"),
+				body("staff")
+					.notEmpty()
+					.withMessage("Staff count is required")
+					.isNumeric()
+					.withMessage("Staff count must be a number"),
+				body("volunteers")
+					.notEmpty()
+					.withMessage("Volunteers count is required")
+					.isNumeric()
+					.withMessage("Volunteers count must be a number"),
+				body("target")
+					.notEmpty()
+					.withMessage("Target value is required")
+					.isNumeric()
+					.withMessage("Target value must be a number"),
+				body("current_value")
+					.notEmpty()
+					.withMessage("Current value is required")
+					.isNumeric()
+					.withMessage("Current value must be a number"),
+				body("evaluation_criteria")
+					.isArray()
+					.withMessage("Evaluation criteria must be an array"),
+			];
+		}
+
+		case "update-campaign": {
+			return [
+				body("campaign_name")
+					.optional()
+					.isString()
+					.withMessage("Campaign name must be a string"),
+				body("description")
+					.optional()
+					.isString()
+					.withMessage("Description must be a string"),
+				body("end_date")
+					.optional()
+					.isDate()
+					.withMessage("End date must be a valid date"),
+				body("goals")
+					.optional()
+					.isArray()
+					.withMessage("Goals must be an array"),
+				body("target_audience")
+					.optional()
+					.isString()
+					.withMessage("Target audience must be a string"),
+				body("messages")
+					.optional()
+					.isArray()
+					.withMessage("Messages must be an array"),
+				body("activities")
+					.optional()
+					.isArray()
+					.withMessage("Activities must be an array"),
+				body("budget_currency")
+					.optional()
+					.isString()
+					.withMessage("Budget currency must be a string"),
+				body("budget")
+					.optional()
+					.isNumeric()
+					.withMessage("Budget must be a number"),
+				body("staff")
+					.optional()
+					.isNumeric()
+					.withMessage("Staff count must be a number"),
+				body("volunteers")
+					.optional()
+					.isNumeric()
+					.withMessage("Volunteers count must be a number"),
+				body("target")
+					.optional()
+					.isNumeric()
+					.withMessage("Target value must be a number"),
+				body("current_value")
+					.optional()
+					.isNumeric()
+					.withMessage("Current value must be a number"),
+				body("evaluation_criteria")
+					.optional()
+					.isArray()
+					.withMessage("Evaluation criteria must be an array"),
+			];
+		}
 	}
 };
